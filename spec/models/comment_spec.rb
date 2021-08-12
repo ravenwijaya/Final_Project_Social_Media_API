@@ -28,5 +28,17 @@ describe Comment do
                 expect(comment.valid?).to eq(false)
             end
         end
+        context 'when initialized without content' do
+            it 'should return false' do
+                params={
+                    'id' => 1,
+                    'user_id' => 1,
+                    'post_id' => 1,
+                    'file_path' => '/mnt/c/Users/wijay/code/final/public/uploads/81Y4tT_iJhaYBI-LnwvYowfat5uc.jpg'
+                }
+                comment = Comment.new(params)
+                expect(comment.valid?).to eq(false)
+            end
+        end
     end
 end
