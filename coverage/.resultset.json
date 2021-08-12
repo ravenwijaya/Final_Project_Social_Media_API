@@ -1,10 +1,20 @@
 {
   "RSpec": {
     "coverage": {
-      "/mnt/c/Users/wijay/code/final/spec/controllers/tag_controller_spec.rb": {
+      "/mnt/c/Users/wijay/code/final/spec/controllers/post_controller_spec.rb": {
         "lines": [
           1,
           1,
+          null,
+          1,
+          1,
+          1,
+          1,
+          null,
+          1,
+          null,
+          null,
+          null,
           null,
           1,
           1,
@@ -18,13 +28,121 @@
           null
         ]
       },
-      "/mnt/c/Users/wijay/code/final/controllers/tagcontroller.rb": {
+      "/mnt/c/Users/wijay/code/final/controllers/postcontroller.rb": {
         "lines": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          null,
+          1,
+          null,
+          null,
+          1,
+          1,
+          null,
+          null,
+          null,
+          1,
+          0,
+          0,
+          0,
+          null,
+          null
+        ]
+      },
+      "/mnt/c/Users/wijay/code/final/models/post.rb": {
+        "lines": [
+          1,
           1,
           null,
           1,
           1,
           1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          null,
+          null,
+          1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          null,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          null,
+          0,
+          0,
+          null,
+          null,
+          0,
+          0,
+          null,
+          null,
+          0,
+          null,
+          null,
+          null,
+          1,
+          0,
+          0,
+          0,
+          0,
+          null,
+          null,
+          1,
+          0,
+          0,
+          0,
+          0,
+          null,
+          0,
+          null,
+          1,
+          null,
+          0,
+          null,
+          null,
+          null,
+          null,
+          null,
+          0,
+          null,
+          1,
+          0,
+          0,
+          null,
+          null,
+          null
+        ]
+      },
+      "/mnt/c/Users/wijay/code/final/db/db_connector.rb": {
+        "lines": [
+          1,
+          1,
+          null,
+          1,
+          0,
+          null,
+          null,
+          null,
+          null,
           null,
           null
         ]
@@ -106,23 +224,8 @@
           null,
           null
         ]
-      },
-      "/mnt/c/Users/wijay/code/final/db/db_connector.rb": {
-        "lines": [
-          1,
-          1,
-          null,
-          1,
-          0,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ]
       }
     },
-    "timestamp": 1628758227
+    "timestamp": 1628758314
   }
 }
