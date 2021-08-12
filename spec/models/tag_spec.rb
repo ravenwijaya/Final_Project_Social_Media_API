@@ -45,4 +45,62 @@ describe Tag do
             end
         end
     end
+    describe '.get_top_5' do
+        context "when get top 5 hashtag" do
+            it 'should return true' do
+                time=Time.now- 60 * 60 * 24
+                rawData_result =[
+                    {'tag_id' => 1},
+                    {'tag_id' => 2},
+                    {'tag_id' => 3},
+                    {'tag_id' => 4},
+                    {'tag_id' => 5}
+                ]
+                rawData2_result =[
+                    {'id' => 1, 'name' => '#hashtag1'},
+                    {'id' => 2, 'name' => '#hashtag2'},
+                    {'id' => 3, 'name' => '#hashtag3'},
+                    {'id' => 4, 'name' => '#hashtag4'},
+                    {'id' => 5, 'name' => '#hashtag5'}
+                ]
+                tagarr=Array.new
+                for data in rawData2_result
+                    tag=Tag.new(data)
+                    tagarr<<tag
+                end
+                result=[
+                    {
+                        :id => 1,
+                        :name =>"#hashtag1"
+                    },
+                    {
+                        :id => 2,
+                        :name =>"#hashtag2"
+                    },
+                    {
+                        :id => 3,
+                        :name =>"#hashtag3"
+                    },
+                    {
+                        :id => 4,
+                        :name =>"#hashtag4"
+                    },
+                    {
+                        :id => 5,
+                        :name =>"#hashtag5"
+                    }
+                ]
+                mock_client = double
+                query = "select tag_id, sum(number) total from ( select tag_id, count(tag_id) as number from post_tags where created_at > '#{time}' group by tag_id union all select tag_id, count(tag_id) as number from comment_tags where created_at > '#{time}' group by tag_id) t group by tag_id order by total desc limit 5"
+                allow(Mysql2::Client).to receive(:new).and_return(mock_client)
+                expect(mock_client).to receive(:query).with(query)
+                allow(mock_client).to receive(:query).with(query).and_return(rawData_result)
+                rawData_result.each_with_index do |data, index|
+                    allow(Tag).to receive(:get_tag_by_id).with(data['tag_id']).and_return(tagarr[index])
+                end
+                tagarr.map { |tag| allow(tag).to receive(:as_json).and_return({id: tag.id, name: tag.name})}
+                expect(Tag.get_top_5).to eq(result)
+            end
+        end
+    end
 end
