@@ -106,4 +106,39 @@ describe Post do
             end
         end
     end
+    describe '.get_posts_by_tag_id' do
+        context "when get post by tag id" do
+            it 'should return tag object' do
+                params={
+                    'id' => 1,
+                    'user_id' => 1,
+                    'content' => 'What?',
+                    'file_path' => '/81Y4tT_iJhaYBI-LnwvYowfat5uc.jpg'
+                }
+                id = 1
+                post = Post.new(params)
+                convert_result = Array.new 
+                convert_result << post
+                as_json_result=
+                    {
+                        :id => 1,
+                        :user_id => 1,
+                        :content => 'What?',
+                        :file_path => '/81Y4tT_iJhaYBI-LnwvYowfat5uc.jpg'
+                    }
+                expected_result =[{
+                    :id => 1,
+                    :user_id => 1,
+                    :content => 'What?',
+                    :file_path => '/81Y4tT_iJhaYBI-LnwvYowfat5uc.jpg'
+                }]
+                mock_client = double 
+                allow(Mysql2::Client).to receive(:new).and_return(mock_client)
+                expect(mock_client).to receive(:query).with("select posts.* from post_tags join posts on post_tags.post_id = posts.id where tag_id = #{id}")
+                allow(Post).to receive(:convert_sql_result_to_array).and_return(convert_result)
+                convert_result.map { |post| allow(post).to receive(:as_json).and_return(as_json_result)}
+                expect(Post.get_posts_by_tag_id(1)).to eq(expected_result)
+            end
+        end
+    end
 end
