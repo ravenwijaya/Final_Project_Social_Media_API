@@ -56,4 +56,35 @@ describe Post do
             end
         end
     end
+    describe '#save' do
+        context "when save post" do
+            it 'should return post_id' do
+                params={
+                    'id' => 1,
+                    'user_id' => 1,
+                    'content' => 'What are the most popular #Instagram #hashtags by category?',
+                    'file_path' => '/mnt/c/Users/wijay/code/final/public/uploads/81Y4tT_iJhaYBI-LnwvYowfat5uc.jpg'
+                }
+                post = Post.new(params)
+                tag = Tag.new({'id' => 1})
+                tag_new = Tag.new({'name' => '#hashtags'})
+                post_id =[Post.new({'id' => 1})]
+                mock_client = double
+                mock_rawData = double
+                allow(post).to receive(:valid?).and_return(true)
+                allow(Mysql2::Client).to receive(:new).and_return(mock_client)
+                expect(mock_client).to receive(:query).with("insert into posts(content,user_id,file_path) values ('#{post.content}',#{post.user_id},'#{post.file_path}')")
+                expect(mock_client).to receive(:query).with("select last_insert_id() as id").and_return(mock_rawData)
+                allow(Post).to receive(:convert_sql_result_to_array).with(mock_rawData).and_return(post_id)
+                expect(post.tags).to receive(:empty?).and_return(false)
+                allow(Tag).to receive(:get_tag_id).with('#Instagram').and_return(tag)
+                allow(Tag).to receive(:get_tag_id).with('#hashtags').and_return(nil)
+                allow(Tag).to receive(:new).with({'name' => '#hashtags'}).and_return(tag_new)
+                allow(tag_new).to receive(:save).and_return(2)
+                expect(mock_client).to receive(:query).with("insert into post_tags(post_id,tag_id) values (#{post_id[0].id},#{1})")
+                expect(mock_client).to receive(:query).with("insert into post_tags(post_id,tag_id) values (#{post_id[0].id},#{2})")
+                expect(post.save).to eq(post_id[0].id)  
+            end
+        end
+    end
 end
