@@ -85,4 +85,24 @@ describe Comment do
             end
         end
     end
+    describe '.convert_sql_result_to_array' do
+        context "when convert" do
+            it 'should return array contains tag object' do
+                params={
+                    'id' => 1,
+                    'content' => 'What are the most popular Instagram #hashtags by category?',
+                    'user_id' => 1,
+                    'post_id' => 1,
+                    'file_path' => '/mnt/c/Users/wijay/code/final/public/uploads/81Y4tT_iJhaYBI-LnwvYowfat5uc.jpg'
+                }
+                rawData = [params]
+                comment = Comment.new(params)
+                expected_result = [comment]
+                rawData.each do |data|
+                    allow(Comment).to receive(:new).with(data).and_return(comment)
+                end
+                expect(Comment.convert_sql_result_to_array(rawData)).to eq(expected_result)
+            end
+        end
+    end
 end
