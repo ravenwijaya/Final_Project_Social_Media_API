@@ -1,21 +1,11 @@
 {
   "RSpec": {
     "coverage": {
-      "/mnt/c/Users/wijay/code/final/spec/controllers/user_controller_spec.rb": {
+      "/mnt/c/Users/wijay/code/final/spec/controllers/tag_controller_spec.rb": {
         "lines": [
           1,
           1,
           null,
-          1,
-          1,
-          1,
-          1,
-          null,
-          1,
-          null,
-          null,
-          null,
-          1,
           1,
           1,
           1,
@@ -28,11 +18,10 @@
           null
         ]
       },
-      "/mnt/c/Users/wijay/code/final/controllers/usercontroller.rb": {
+      "/mnt/c/Users/wijay/code/final/controllers/tagcontroller.rb": {
         "lines": [
           1,
           null,
-          1,
           1,
           1,
           1,
@@ -40,7 +29,7 @@
           null
         ]
       },
-      "/mnt/c/Users/wijay/code/final/models/user.rb": {
+      "/mnt/c/Users/wijay/code/final/models/tag.rb": {
         "lines": [
           1,
           null,
@@ -48,10 +37,8 @@
           1,
           null,
           1,
-          1,
-          1,
-          1,
-          1,
+          0,
+          0,
           null,
           null,
           1,
@@ -59,6 +46,49 @@
           0,
           0,
           0,
+          0,
+          null,
+          null,
+          1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          null,
+          0,
+          null,
+          null,
+          1,
+          0,
+          0,
+          0,
+          null,
+          null,
+          null,
+          1,
+          0,
+          0,
+          null,
+          0,
+          null,
+          null,
+          1,
+          0,
+          0,
+          0,
+          0,
+          null,
+          0,
+          null,
+          null,
+          1,
+          null,
+          0,
+          null,
+          null,
           0,
           null,
           null,
@@ -93,6 +123,6 @@
         ]
       }
     },
-    "timestamp": 1628758127
+    "timestamp": 1628758227
   }
 }
