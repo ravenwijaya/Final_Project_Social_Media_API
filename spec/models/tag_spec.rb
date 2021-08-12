@@ -103,4 +103,20 @@ describe Tag do
             end
         end
     end
+    describe '.get_tag_id' do
+        context "when get tag id" do
+            it 'should return tag object' do
+                name = '#hashtag'
+                tag = Tag.new({'id' => 1})
+                query_result = [{'id' => 1}]
+                convert_result = [tag]
+                mock_client = double 
+                allow(Mysql2::Client).to receive(:new).and_return(mock_client)
+                allow(mock_client).to receive(:query).with("select id from tags where name = '#{name}'").and_return(query_result)
+                allow(query_result).to receive(:any?).and_return true
+                allow(Tag).to receive(:convert_sql_result_to_array).and_return(convert_result)
+                expect(Tag.get_tag_id('#hashtag')).to eq(tag)
+            end
+        end
+    end
 end
