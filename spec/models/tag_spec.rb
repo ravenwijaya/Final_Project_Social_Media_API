@@ -133,4 +133,17 @@ describe Tag do
             end
         end
     end
+    describe '.convert_sql_result_to_array' do
+        context "when convert" do
+            it 'should return array contains tag object' do
+                rawData = [{'id' => 1, 'name' => '#hashtag'}]
+                tag = Tag.new({'id' => 1, 'name' => '#hastag'})
+                expected_result = [tag]
+                rawData.each do |data|
+                    allow(Tag).to receive(:new).with(data).and_return(tag)
+                end
+                expect(Tag.convert_sql_result_to_array(rawData)).to eq(expected_result)
+            end
+        end
+    end
 end
