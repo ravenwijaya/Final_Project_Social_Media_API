@@ -53,5 +53,15 @@ describe User do
                 expect(user.valid?).to eq(false)
             end
         end
+        context 'when initialized without email' do
+            it 'should return false' do
+                params={
+                    'username' => 'raven',
+                    'bio' => 'bio'
+                }
+                user = User.new(params)
+                expect(user.valid?).to eq(false)
+            end
+        end
     end
 end
