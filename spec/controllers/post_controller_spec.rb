@@ -20,4 +20,15 @@ describe PostController do
             end
         end
     end
+    describe '.get_by_tag_name' do
+        context "when get_by_tag_name" do   
+            it 'should have correct parameters' do
+                params = {'tag_name' => '#Hashtag'}
+                expect(Tag).to receive(:get_tag_id).with('#hashtag')
+                allow(Tag).to receive(:get_tag_id).and_return(Tag.new({'id'=>1}))
+                expect(Post).to receive(:get_posts_by_tag_id).with(1)
+                PostController.get_by_tag_name(params)
+            end
+        end
+    end
 end
