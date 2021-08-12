@@ -1,4 +1,3 @@
-# require './test_helper'
 require './models/user.rb'
 describe User do
     describe '#initialize, #valid?, and #exist?' do
