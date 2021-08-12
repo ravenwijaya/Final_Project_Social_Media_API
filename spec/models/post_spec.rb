@@ -87,4 +87,23 @@ describe Post do
             end
         end
     end
+    describe '.convert_sql_result_to_array' do
+        context "when convert" do
+            it 'should return array contains tag object' do
+                params ={
+                    'id' => 1,
+                    'user_id' => 1,
+                    'content' => 'What are the most popular #Instagram #hashtags by category?',
+                    'file_path' => '/mnt/c/Users/wijay/code/final/public/uploads/81Y4tT_iJhaYBI-LnwvYowfat5uc.jpg'
+                }
+                rawData = [params]
+                post = Post.new(params)
+                expected_result = [post]
+                rawData.each do |data|
+                    allow(Post).to receive(:new).with(data).and_return(post)
+                end
+                expect(Post.convert_sql_result_to_array(rawData)).to eq(expected_result)
+            end
+        end
+    end
 end
