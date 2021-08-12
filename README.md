@@ -1,4 +1,4 @@
-#Installation
+# Installation
 1. Download and Install [Postman](https://www.postman.com/downloads/)
 2. Import FINAL_API_DATABASE.sql to your database
 3. Customize .env
