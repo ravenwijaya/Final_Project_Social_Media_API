@@ -146,4 +146,13 @@ describe Tag do
             end
         end
     end
+    describe '#as_json' do
+        context "when as json" do
+            it 'should return as json' do
+                tag = Tag.new({'id' => 1, 'name' => '#hastag'})
+                expected_result = {id: tag.id, name: tag.name}
+                expect(tag.as_json).to eq(expected_result)
+            end
+        end
+    end
 end
