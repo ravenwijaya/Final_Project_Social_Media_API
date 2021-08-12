@@ -64,4 +64,22 @@ describe User do
             end
         end
     end
+    describe '#save' do
+        context "with valid object" do
+            it 'should return id' do
+                params={
+                    'username' => 'raven',
+                    'email' => 'raven@gmail.com',
+                    'bio' => 'bio'
+                }
+                user = User.new(params)
+                mock_client = double
+                allow(user).to receive(:valid?).and_return(true)
+                allow(Mysql2::Client).to receive(:new).and_return(mock_client)
+                expect(mock_client).to receive(:query).with("insert into users(username,email,bio) values ('#{user.username}','#{user.email}','#{user.bio}')")
+                allow(mock_client).to receive(:query).with("select last_insert_id() as id").and_return([{'id' => 1}])
+                expect(user.save).to equal(1)
+            end
+        end
+    end
 end
