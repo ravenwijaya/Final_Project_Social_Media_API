@@ -81,5 +81,16 @@ describe User do
                 expect(user.save).to equal(1)
             end
         end
+        context "with invalid object" do
+            it 'should return false' do
+                params={
+                    'username' => 'raven',
+                    'bio' => 'bio'
+                }
+                user = User.new(params)
+                allow(user).to receive(:valid?).and_return(false)
+                expect(user.save).to equal(false)
+            end
+        end
     end
 end
